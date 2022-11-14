@@ -12,10 +12,14 @@ board = [
 
 
 def solve(bo):
+    # Finds the next empty cell
     find = find_empty(bo)
+
+    # If no more empty cells, then it has been solved
     if not find:
         return True
     else:
+        #row and
         row, col = find
 
     for i in range(1, 10):
@@ -53,19 +57,25 @@ def valid(bo, num, pos):
     return True
 
 
+# Returns the next blank cell
 def print_board(bo):
+    print("  - - - - - - - - - - - - -")
     for i in range(len(bo)):
+        # Each 3 rows print out bottom border
         if i % 3 == 0 and i != 0:
-            print("- - - - - - - - - - - -")
+            print("  - - - - - - - - - - - - -")
 
         for j in range(len(bo)):
-            if j % 3 == 0 and j != 0:
+
+            if j % 3 == 0:
                 print(" | ", end="")
 
             if j == 8:
-                print(bo[i][j])
+                print(str(bo[i][j]) + ' |')
             else:
                 print(str(bo[i][j]) + " ", end="")
+
+    print("  - - - - - - - - - - - - -")
 
 
 def find_empty(bo):
