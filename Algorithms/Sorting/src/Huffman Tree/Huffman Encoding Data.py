@@ -15,6 +15,7 @@ def Calculate_Probability(data):
 
 codes = dict()
 
+
 def Calculate_Codes(node, val=''):
     newVal = val + str(node.code)
 
@@ -31,11 +32,12 @@ def Calculate_Codes(node, val=''):
 def Output_Encoded(data, coding):
     encoding_output = []
     for c in data:
-        print(coding[c], end = '')
+        print(coding[c], end='')
         encoding_output.append(coding[c])
 
     string = ''.join([str(item) for item in encoding_output])
     return string
+
 
 def total_Gain(data, coding):
     before_compression = len(data)
@@ -68,7 +70,7 @@ def Huffman_Encoding(data):
         left.code = 0
         right.code = 1
 
-        newNode = Node(left.prob+right.prob, left.symbol+right.symbol, left, right)
+        newNode = Node(left.prob + right.prob, left.symbol + right.symbol, left, right)
 
         nodes.remove(left)
         nodes.remove(right)
@@ -80,6 +82,7 @@ def Huffman_Encoding(data):
     encoded_output = Output_Encoded(data, huffman_encoding)
     print("Encoded_output: ", encoded_output)
     return encoded_output, nodes[0]
+
 
 data = "AAAAAAAAAAAAAABCCCCCCCCCCCCCCCDDEEEEEEEE"
 
