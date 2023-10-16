@@ -12,20 +12,21 @@ class single_linked_list:
 
     def insertSorted(self, newNode):
 
-        if not isinstance(newNode.data, str):
-            raise ValueError("You can only enter a string to this list")
+        if self.check_if_in_list(newNode):
+            return
 
         if self.head:
             if self.head.next:
                 current = self.head
                 while (current.next is not None and
-                       current.next.data.upper() < newNode.data.upper()):
+                       list(current.next.data.keys())[0].upper() < list(newNode.data.keys())[0].upper()):
                     current = current.next
 
                 newNode.next = current.next
                 current.next = newNode
             else:
-                if self.head.data.upper() > newNode.data.upper():
+                if list(self.head.data.keys())[0].upper() > list(newNode.data.keys())[0].upper():
+
                     oldNode = self.head
                     self.head = newNode
                     newNode.next = oldNode
@@ -33,7 +34,22 @@ class single_linked_list:
                 else:
                     self.head.next = newNode
         else:
+
             self.head = newNode
+
+    def check_if_in_list(self, newNode):
+        if self.head:
+            current = self.head
+            while current:
+                if list(current.data.keys())[0] == list(newNode.data.keys())[0]:
+                    key = list(current.data.keys())[0]
+                    current.data[key] += 1
+                    return True
+                current = current.next
+
+            return False
+        else:
+            return False
 
     def insertAtEnd(self, newNode):
         if self.head:
@@ -69,4 +85,3 @@ class single_linked_list:
 
         else:
             print(self.head.data)
-
